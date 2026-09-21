@@ -11,6 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { StoreProvider } from "@/components/store-context";
+import { SiteShell } from "@/components/site-shell";
+import { Overlays } from "@/components/overlays";
 
 function NotFoundComponent() {
   return (
@@ -77,14 +80,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { name: "author", content: "Maryam Fashions" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Maryam Fashions" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
@@ -92,7 +91,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@400;500;600;700&family=Parisienne&display=swap" },
     ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
+      ["Do you deliver all over Pakistan?","Yes, free delivery nationwide, 3–5 business days."],
+      ["Can I check the parcel before paying?","Yes, open-parcel/COD available — inspect before payment."],
+      ["What is your return/exchange policy?","7-day easy return on unused, tagged items."],
+      ["What payment methods do you accept?","Cash on Delivery, JazzCash, Easypaisa, and card payments via our secure Pakistani payment gateway."],
+      ["How do I know my size?","Open the Size Guide accordion on each product page."],
+      ["How can I track my order?","Your order confirmation includes a WhatsApp/SMS tracking link."],
+      ["Do you offer wholesale/bulk orders?","Message us on WhatsApp for bulk inquiries."],
+      ["How do I use a discount code?","Enter it at checkout in the promo code field."],
+      ["Is the fabric pre-shrunk / how do I wash it?","See the Fabric & Care accordion on the product page."],
+      ["How do I talk to a real person?","Tap the WhatsApp button and our team will help."],
+    ].map(([name,text])=>({"@type":"Question",name,acceptedAnswer:{"@type":"Answer",text}})) }) }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -118,9 +132,6 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
-    </QueryClientProvider>
+    <QueryClientProvider client={queryClient}><StoreProvider><SiteShell><Outlet /></SiteShell><Overlays/></StoreProvider></QueryClientProvider>
   );
 }
