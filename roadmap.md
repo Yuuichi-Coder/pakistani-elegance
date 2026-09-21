@@ -1,8 +1,8 @@
-# Maryam Fashions build
 
-- [ ] Enable Cloud and create secure commerce schema with seeded catalog
-- [ ] Add supplied hero assets and generated product photography
-- [ ] Build shared storefront shell, cart, search, wishlist, overlays, and footer
-- [ ] Build home, collection, product, checkout, account, and content pages
-- [ ] Add metadata, structured data, sitemap, robots, and llms.txt
-- [ ] Verify buyer flow and layouts at 375px, 768px, and 1440px
+# Storefront roadmap
+- [x] Brand system, imagery and catalog
+- [x] Home, collections, product, cart, checkout, search, wishlist and account
+- [x] Story, contact and policy pages
+- [x] Floating conversion tools and Pakistani payment choices
+- [x] Metadata, crawler guidance and structured data
+- [ ] Final browser verification

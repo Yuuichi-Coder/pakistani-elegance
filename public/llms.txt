@@ -1,0 +1,24 @@
+# Maryam Fashions
+Maryam Fashions is a Pakistani womenswear store offering lawn, embroidered suits, luxury pret, festive wear and wedding wear.
+
+## Shopping
+- Home: /
+- New Arrivals: /collections/new-arrivals
+- Luxury Lawn: /collections/luxury-lawn
+- Riwaayat: /collections/riwaayat
+- Sale: /collections/sale
+- Search: /search
+
+## Customer care
+- Free delivery across Pakistan, typically 3–5 business days.
+- Open-parcel Cash on Delivery is available where supported.
+- Seven-day returns apply to eligible unused, tagged items.
+- Payments: Cash on Delivery, JazzCash, Easypaisa, bank transfer, Visa and Mastercard through a Pakistani payment gateway.
+- WhatsApp: +92 306 4777251
+
+## Policies
+- /shipping-policy
+- /refund-policy
+- /privacy-policy
+- /terms
+- /contact
