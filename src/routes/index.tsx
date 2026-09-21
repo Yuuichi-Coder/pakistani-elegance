@@ -1,24 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import heroDesktop from "@/assets/maryam-hero-desktop.webp.asset.json";
+import heroMobile from "@/assets/maryam-hero-mobile.webp.asset.json";
+import { products } from "@/lib/catalog";
+import { ProductImage } from "@/components/product-image";
+import { ProductGrid, SectionTitle, TrustStrip } from "@/components/sections";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head:()=>({meta:[{title:"Maryam Fashions — Pakistani Lawn & Embroidered Suits"},{name:"description",content:"Shop premium Pakistani lawn, luxury pret, festive and embroidered suits with free nationwide delivery."},{property:"og:title",content:"Maryam Fashions — Pakistani Lawn & Embroidered Suits"},{property:"og:description",content:"Discover the Sapphire Cotton Collection and timeless Pakistani womenswear."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}],links:[{rel:"canonical",href:"/"},{rel:"preload",as:"image",href:heroDesktop.url,media:"(min-width: 640px)"},{rel:"preload",as:"image",href:heroMobile.url,media:"(max-width: 639px)"}],scripts:[{type:"application/ld+json",children:JSON.stringify({"@context":"https://schema.org","@type":"Organization",name:"Maryam Fashions",telephone:"+923064777251"})},{type:"application/ld+json",children:JSON.stringify({"@context":"https://schema.org","@type":"WebSite",name:"Maryam Fashions",url:"/",potentialAction:{"@type":"SearchAction",target:"/search?q={search_term_string}","query-input":"required name=search_term_string"}})}]}),
   component: Index,
 });
 
 // IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  const [tab,setTab]=useState("riwaayat"); const [time,setTime]=useState(8*3600+42*60+18);
+  useEffect(()=>{const t=setInterval(()=>setTime(v=>v>0?v-1:24*3600),1000);return()=>clearInterval(t)},[]);
+  const fmt=(n:number)=>String(n).padStart(2,"0");
+  return <>
+    <section className="relative bg-foreground"><picture><source media="(max-width: 639px)" srcSet={heroMobile.url}/><img src={heroDesktop.url} alt="Sapphire Cotton Collection by Maryam Fashions, teal embroidered suits in a garden" width={1370} height={688} fetchPriority="high" className="h-[76vh] min-h-[560px] w-full object-cover sm:h-auto sm:min-h-0"/></picture><div className="absolute bottom-8 left-1/2 -translate-x-1/2 sm:bottom-10"><Link to="/collections/$slug" params={{slug:"luxury-lawn"}} className="inline-flex bg-primary px-7 py-3 text-xs font-bold uppercase tracking-[.14em] text-primary-foreground shadow-xl">Shop the collection</Link></div></section>
+    <section className="mx-auto max-w-5xl px-4 py-10"><h1 className="sr-only">Maryam Fashions Pakistani lawn and embroidered suits</h1><div className="flex snap-x gap-5 overflow-x-auto pb-2 sm:grid sm:grid-cols-5">{[[0,"New Arrivals","new-arrivals"],[4,"Eid Edit","eid-collection"],[8,"Luxury Pret","luxury-pret"],[10,"Riwaayat","riwaayat"],[7,"Sale","sale"]].map(([i,n,slug])=><Link key={String(slug)} to="/collections/$slug" params={{slug:String(slug)}} className="min-w-24 snap-start text-center"><ProductImage product={products[Number(i)]} className="mx-auto aspect-square w-24 rounded-full border-2 border-background shadow-md sm:w-full"/><span className="mt-3 block text-xs font-semibold uppercase tracking-wider">{String(n)}</span></Link>)}</div></section>
+    <section className="bg-muted py-14"><div className="mx-auto max-w-[1440px] px-4 lg:px-8"><div className="mb-7 flex flex-col items-center justify-between gap-3 border-y border-primary py-3 sm:flex-row"><span className="text-xs font-bold uppercase tracking-[.2em] text-primary">Flat 30% Off — Limited Time</span><div className="font-display text-2xl">Sale ends in {fmt(Math.floor(time/3600))}:{fmt(Math.floor(time%3600/60))}:{fmt(time%60)}</div></div><div className="grid grid-flow-col auto-cols-[70%] gap-4 overflow-x-auto pb-4 sm:auto-cols-[35%] lg:auto-cols-[23%]">{products.slice(0,7).map(p=><div key={p.slug}><ProductGrid items={[p]}/></div>)}</div></div></section>
+    <section className="mx-auto max-w-[1440px] px-4 py-16 lg:px-8"><SectionTitle kicker="Just landed" title="New Arrivals" link="new-arrivals"/><ProductGrid items={products.slice(0,8)}/></section>
+    <section className="border-y border-border py-16"><div className="mx-auto max-w-[1440px] px-4 lg:px-8"><SectionTitle kicker="A season in bloom" title="Summer Collection"/><div className="mb-8 flex justify-center gap-6">{[["riwaayat","Riwaayat"],["luxury-pret","Luxury Pret"],["sale","Sale"]].map(x=><button key={x[0]} onClick={()=>setTab(x[0])} className={`border-b-2 pb-2 text-xs font-bold uppercase tracking-widest ${tab===x[0]?"border-primary text-primary":"border-transparent"}`}>{x[1]}</button>)}</div><ProductGrid items={products.filter(p=>tab==="sale"||p.collection===tab).slice(0,4)}/></div></section><TrustStrip/>
+  </>;
 }

@@ -19,6 +19,9 @@
  */
 
 @theme inline {
+  --font-sans: "Manrope", sans-serif;
+  --font-display: "Italiana", serif;
+  --font-brand: "Parisienne", cursive;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -59,29 +62,45 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-gold: var(--gold);
+  --color-sale-soft: var(--sale-soft);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-footer: var(--footer);
+  --color-footer-foreground: var(--footer-foreground);
+  --color-footer-muted: var(--footer-muted);
+  --color-footer-border: var(--footer-border);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.25rem;
+  --background: oklch(0.995 0.003 75);
+  --foreground: oklch(0.20 0.015 45);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.42 0.18 25);
+  --primary-foreground: oklch(0.99 0.003 75);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
+  --muted: oklch(0.965 0.008 70);
+  --muted-foreground: oklch(0.49 0.018 48);
   --accent: oklch(0.968 0.007 247.896);
   --accent-foreground: oklch(0.208 0.042 265.755);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.89 0.012 65);
+  --input: oklch(0.86 0.015 65);
+  --ring: oklch(0.42 0.18 25);
+  --gold: oklch(0.62 0.09 75);
+  --sale-soft: oklch(0.94 0.03 25);
+  --whatsapp: oklch(0.68 0.17 148);
+  --whatsapp-foreground: oklch(1 0 0);
+  --footer: oklch(0.18 0.012 45);
+  --footer-foreground: oklch(0.96 0.006 70);
+  --footer-muted: oklch(0.76 0.012 70);
+  --footer-border: oklch(0.32 0.012 45);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +159,27 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    letter-spacing: 0;
   }
+  button, a { cursor: pointer; }
+  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 }
+
+@utility font-brand { font-family: var(--font-brand); }
+@utility font-display { font-family: var(--font-display); }
+
+.catalog-sheet { width: 400%; height: 100%; max-width: none; object-fit: cover; }
+.catalog-sheet.panel-0 { transform: translateX(0); }
+.catalog-sheet.panel-1 { transform: translateX(-25%); }
+.catalog-sheet.panel-2 { transform: translateX(-50%); }
+.catalog-sheet.panel-3 { transform: translateX(-75%); }
+.badge { position:absolute; right:-0.45rem; top:-0.5rem; display:grid; min-width:1.1rem; height:1.1rem; place-items:center; border-radius:999px; background:var(--primary); color:var(--primary-foreground); font-size:.62rem; }
+.footer-title { margin-bottom:1rem; font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.18em; }
+.footer-link { display:block; margin:.55rem 0; font-size:.8rem; color:var(--footer-muted); }
+.pay-pill { border:1px solid var(--footer-border); padding:.3rem .45rem; }
+.ticker-track { animation:ticker 24s linear infinite; }
+@keyframes ticker { to { transform:translateX(-50%); } }
+.pulse-soft { animation:pulse-soft 2s ease-in-out infinite; }
+@keyframes pulse-soft { 50% { transform:scale(1.06); box-shadow:0 0 0 10px color-mix(in oklab,var(--whatsapp) 15%,transparent); } }
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; } }

@@ -1,0 +1,7 @@
+import { Link } from "@tanstack/react-router";
+import { PackageCheck, RefreshCcw, Truck } from "lucide-react";
+import { ProductCard } from "./product-card";
+import { products } from "@/lib/catalog";
+export function SectionTitle({kicker,title,link}:{kicker?:string;title:string;link?:string}){return <div className="mb-8 text-center">{kicker&&<p className="text-xs uppercase tracking-[.25em] text-gold">{kicker}</p>}<h2 className="font-display text-3xl md:text-4xl">{title}</h2>{link&&<Link to="/collections/$slug" params={{slug:link}} className="mt-2 inline-block border-b border-primary text-xs uppercase tracking-widest text-primary">View all</Link>}</div>}
+export function ProductGrid({items=products.slice(0,8)}:{items?:typeof products}){return <div className="grid grid-cols-2 gap-x-3 gap-y-8 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-5">{items.map(p=><ProductCard key={p.slug} product={p}/>)}</div>}
+export function TrustStrip(){return <section className="border-y border-border bg-muted"><div className="mx-auto grid max-w-5xl gap-6 px-5 py-8 text-center sm:grid-cols-3">{[[Truck,"Free Shipping","Across Pakistan"],[PackageCheck,"Open Parcel","Check before payment"],[RefreshCcw,"7-Day Returns","On unused, tagged items"]].map(([Icon,t,d])=><div key={String(t)} className="flex items-center justify-center gap-3"><Icon className="size-7 text-primary"/><div className="text-left"><strong className="block text-sm">{String(t)}</strong><span className="text-xs text-muted-foreground">{String(d)}</span></div></div>)}</div></section>}
