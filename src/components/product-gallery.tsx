@@ -30,7 +30,7 @@ export function ProductGallery({ product }: { product: Product }) {
   }
 
   return (
-    <div className="w-full max-w-[440px] min-w-0 justify-self-center md:justify-self-start" aria-label={`${product.name} photo gallery`}>
+    <div className="w-full min-w-0 justify-self-center md:justify-self-start" aria-label={`${product.name} photo gallery`}>
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-muted">
         <img
           src={current.src}
