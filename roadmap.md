@@ -6,3 +6,4 @@
 - [x] Floating conversion tools and Pakistani payment choices
 - [x] Metadata, crawler guidance and structured data
 - [x] Final browser verification
+- [x] Product detail gallery: full portrait image, thumbnails, and arrow navigation on phone, tablet, and desktop
