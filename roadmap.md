@@ -8,3 +8,4 @@
 - [x] Final browser verification
 - [x] Product detail gallery: full portrait image, thumbnails, and arrow navigation on phone, tablet, and desktop
 - [x] Product page: rebalance desktop columns and add product-specific WhatsApp ordering
+- [x] Collection filters: padded fabric select, single-row sizes, live dual-handle price range, and clear action
