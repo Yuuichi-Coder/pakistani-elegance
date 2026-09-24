@@ -7,3 +7,4 @@
 - [x] Metadata, crawler guidance and structured data
 - [x] Final browser verification
 - [x] Product detail gallery: full portrait image, thumbnails, and arrow navigation on phone, tablet, and desktop
+- [x] Product page: rebalance desktop columns and add product-specific WhatsApp ordering
