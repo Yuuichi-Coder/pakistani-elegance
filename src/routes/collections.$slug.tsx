@@ -20,9 +20,11 @@ function CollectionPage() {
   const [price, setPrice] = useState([PRICE_MIN, PRICE_MAX]);
 
   const list = useMemo(() => {
+    const minPrice = price[0] ?? PRICE_MIN;
+    const maxPrice = price[1] ?? PRICE_MAX;
     const filtered = products.filter(p =>
       (slug === "sale" || slug === "flat-30-off" || slug === "new-arrivals" || p.collection === slug || (slug === "summer-collection" && p.fabric.includes("Lawn"))) &&
-      (!fabric || p.fabric === fabric) && p.price >= price[0] && p.price <= price[1]
+      (!fabric || p.fabric === fabric) && p.price >= minPrice && p.price <= maxPrice
     );
     // Every current style is offered in XS–XL; choosing a size retains all available styles.
     return filtered.sort((a, b) => sort === "low" ? a.price - b.price : sort === "high" ? b.price - a.price : b.rating - a.rating);
@@ -47,7 +49,7 @@ function CollectionPage() {
           <div className="mt-2 grid grid-cols-5 gap-1.5">{SIZES.map(x=><Button key={x} size="icon" variant="outline" aria-label={`Size ${x}`} aria-pressed={size===x} onClick={()=>setSize(size===x?"":x)} className={`h-10 w-full min-w-0 px-0 tracking-normal ${size===x?"border-primary bg-primary text-primary-foreground hover:bg-primary/90":""}`}>{x}</Button>)}</div>
         </div>
         <div className="mt-6"><p className="text-xs font-semibold uppercase">Price</p>
-          <p aria-live="polite" className="mt-3 text-sm text-foreground">{money(price[0])} — {money(price[1])}</p>
+          <p aria-live="polite" className="mt-3 text-sm text-foreground">{money(price[0] ?? PRICE_MIN)} — {money(price[1] ?? PRICE_MAX)}</p>
           <Slider aria-label="Price range" min={PRICE_MIN} max={PRICE_MAX} step={100} minStepsBetweenThumbs={1} value={price} onValueChange={setPrice} className="mt-4 h-5"/>
         </div>
         <Button variant="link" size="sm" onClick={clearFilters} disabled={!fabric&&!size&&price[0]===PRICE_MIN&&price[1]===PRICE_MAX} className="mt-5 h-auto px-0 text-xs font-semibold normal-case tracking-normal">Clear Filters</Button>
