@@ -8,6 +8,13 @@
       "when": 1790017632311,
       "tag": "0000_create_maryam_fashions_store",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790347688043,
+      "tag": "0001_admin_foundation",
+      "breakpoints": true
     }
   ]
 }
