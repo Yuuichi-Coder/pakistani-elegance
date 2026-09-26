@@ -28,7 +28,7 @@ export function Panel({ title, children, className, actions }: { title?: string;
 }
 
 const tones: Record<string, string> = {
-  good: "bg-success/15 text-success-foreground border-success/30",
+  good: "bg-whatsapp/15 text-foreground border-whatsapp/40",
   warn: "bg-accent/20 text-foreground border-accent/40",
   bad: "bg-destructive/10 text-destructive border-destructive/30",
   neutral: "bg-muted text-muted-foreground border-border",
