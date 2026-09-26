@@ -15,6 +15,20 @@
       "when": 1790347688043,
       "tag": "0001_admin_foundation",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790412261823,
+      "tag": "0002_media_storage_policies",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1790412281927,
+      "tag": "0003_media_read_policy",
+      "breakpoints": true
     }
   ]
 }

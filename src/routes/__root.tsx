@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  useRouterState,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -14,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { StoreProvider } from "@/components/store-context";
 import { SiteShell } from "@/components/site-shell";
 import { Overlays } from "@/components/overlays";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -130,7 +132,8 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-
+  const isAdmin = useRouterState({ select: (s) => s.location.pathname.startsWith("/admin") });
+  if (isAdmin) return <QueryClientProvider client={queryClient}><Outlet /><Toaster richColors /></QueryClientProvider>;
   return (
     <QueryClientProvider client={queryClient}><StoreProvider><SiteShell><Outlet /></SiteShell><Overlays/></StoreProvider></QueryClientProvider>
   );
