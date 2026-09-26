@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  useRouterState,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -14,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { StoreProvider } from "@/components/store-context";
 import { SiteShell } from "@/components/site-shell";
 import { Overlays } from "@/components/overlays";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
