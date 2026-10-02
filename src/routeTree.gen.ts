@@ -25,6 +25,13 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminCollectionsRouteImport } from './routes/admin.collections'
+import { Route as AdminContentRouteImport } from './routes/admin.content'
+import { Route as AdminCustomersRouteImport } from './routes/admin.customers'
+import { Route as AdminDiscountsRouteImport } from './routes/admin.discounts'
+import { Route as AdminInboxRouteImport } from './routes/admin.inbox'
+import { Route as AdminReviewsRouteImport } from './routes/admin.reviews'
+import { Route as AdminSeoRouteImport } from './routes/admin.seo'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminLoginRouteImport } from './routes/admin_.login'
 import { Route as CollectionsSlugRouteImport } from './routes/collections.$slug'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
@@ -113,6 +120,41 @@ const AdminCollectionsRoute = AdminCollectionsRouteImport.update({
   path: '/collections',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminContentRoute = AdminContentRouteImport.update({
+  id: '/content',
+  path: '/content',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCustomersRoute = AdminCustomersRouteImport.update({
+  id: '/customers',
+  path: '/customers',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDiscountsRoute = AdminDiscountsRouteImport.update({
+  id: '/discounts',
+  path: '/discounts',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminInboxRoute = AdminInboxRouteImport.update({
+  id: '/inbox',
+  path: '/inbox',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminReviewsRoute = AdminReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSeoRoute = AdminSeoRouteImport.update({
+  id: '/seo',
+  path: '/seo',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin_/login',
   path: '/admin/login',
@@ -165,6 +207,13 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/wishlist': typeof WishlistRoute
   '/admin/collections': typeof AdminCollectionsRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/customers': typeof AdminCustomersRoute
+  '/admin/discounts': typeof AdminDiscountsRoute
+  '/admin/inbox': typeof AdminInboxRoute
+  '/admin/reviews': typeof AdminReviewsRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/login': typeof AdminLoginRoute
   '/collections/$slug': typeof CollectionsSlugRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -189,6 +238,13 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/wishlist': typeof WishlistRoute
   '/admin/collections': typeof AdminCollectionsRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/customers': typeof AdminCustomersRoute
+  '/admin/discounts': typeof AdminDiscountsRoute
+  '/admin/inbox': typeof AdminInboxRoute
+  '/admin/reviews': typeof AdminReviewsRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/login': typeof AdminLoginRoute
   '/collections/$slug': typeof CollectionsSlugRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -215,6 +271,13 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/wishlist': typeof WishlistRoute
   '/admin/collections': typeof AdminCollectionsRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/customers': typeof AdminCustomersRoute
+  '/admin/discounts': typeof AdminDiscountsRoute
+  '/admin/inbox': typeof AdminInboxRoute
+  '/admin/reviews': typeof AdminReviewsRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin_/login': typeof AdminLoginRoute
   '/collections/$slug': typeof CollectionsSlugRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -242,6 +305,13 @@ export interface FileRouteTypes {
     | '/terms'
     | '/wishlist'
     | '/admin/collections'
+    | '/admin/content'
+    | '/admin/customers'
+    | '/admin/discounts'
+    | '/admin/inbox'
+    | '/admin/reviews'
+    | '/admin/seo'
+    | '/admin/settings'
     | '/admin/login'
     | '/collections/$slug'
     | '/product/$slug'
@@ -266,6 +336,13 @@ export interface FileRouteTypes {
     | '/terms'
     | '/wishlist'
     | '/admin/collections'
+    | '/admin/content'
+    | '/admin/customers'
+    | '/admin/discounts'
+    | '/admin/inbox'
+    | '/admin/reviews'
+    | '/admin/seo'
+    | '/admin/settings'
     | '/admin/login'
     | '/collections/$slug'
     | '/product/$slug'
@@ -291,6 +368,13 @@ export interface FileRouteTypes {
     | '/terms'
     | '/wishlist'
     | '/admin/collections'
+    | '/admin/content'
+    | '/admin/customers'
+    | '/admin/discounts'
+    | '/admin/inbox'
+    | '/admin/reviews'
+    | '/admin/seo'
+    | '/admin/settings'
     | '/admin_/login'
     | '/collections/$slug'
     | '/product/$slug'
@@ -435,6 +519,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminCollectionsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/content': {
+      id: '/admin/content'
+      path: '/content'
+      fullPath: '/admin/content'
+      preLoaderRoute: typeof AdminContentRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/customers': {
+      id: '/admin/customers'
+      path: '/customers'
+      fullPath: '/admin/customers'
+      preLoaderRoute: typeof AdminCustomersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/discounts': {
+      id: '/admin/discounts'
+      path: '/discounts'
+      fullPath: '/admin/discounts'
+      preLoaderRoute: typeof AdminDiscountsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/inbox': {
+      id: '/admin/inbox'
+      path: '/inbox'
+      fullPath: '/admin/inbox'
+      preLoaderRoute: typeof AdminInboxRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/reviews': {
+      id: '/admin/reviews'
+      path: '/reviews'
+      fullPath: '/admin/reviews'
+      preLoaderRoute: typeof AdminReviewsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/seo': {
+      id: '/admin/seo'
+      path: '/seo'
+      fullPath: '/admin/seo'
+      preLoaderRoute: typeof AdminSeoRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin_/login': {
       id: '/admin_/login'
       path: '/admin/login'
@@ -489,6 +622,13 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminCollectionsRoute: typeof AdminCollectionsRoute
+  AdminContentRoute: typeof AdminContentRoute
+  AdminCustomersRoute: typeof AdminCustomersRoute
+  AdminDiscountsRoute: typeof AdminDiscountsRoute
+  AdminInboxRoute: typeof AdminInboxRoute
+  AdminReviewsRoute: typeof AdminReviewsRoute
+  AdminSeoRoute: typeof AdminSeoRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
   AdminIndexRoute: typeof AdminIndexRoute
   AdminOrdersIdRoute: typeof AdminOrdersIdRoute
   AdminProductsIdRoute: typeof AdminProductsIdRoute
@@ -498,6 +638,13 @@ interface AdminRouteChildren {
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminCollectionsRoute: AdminCollectionsRoute,
+  AdminContentRoute: AdminContentRoute,
+  AdminCustomersRoute: AdminCustomersRoute,
+  AdminDiscountsRoute: AdminDiscountsRoute,
+  AdminInboxRoute: AdminInboxRoute,
+  AdminReviewsRoute: AdminReviewsRoute,
+  AdminSeoRoute: AdminSeoRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
   AdminIndexRoute: AdminIndexRoute,
   AdminOrdersIdRoute: AdminOrdersIdRoute,
   AdminProductsIdRoute: AdminProductsIdRoute,
