@@ -65,3 +65,4 @@ export function downloadCsv(name: string, rows: Record<string, unknown>[]) {
 }
 
 export const LOW_STOCK = 5;
+export const PAY: Record<string, string> = { cod: "COD", jazzcash: "JazzCash", easypaisa: "Easypaisa", bank_transfer: "Bank Transfer", local_card: "Card" };
