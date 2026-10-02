@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageHeader, Pill, statusTone, th, td, inputCls } from "@/components/admin/ui";
-import { db, fmtDate, rs, useAdminQuery } from "@/components/admin/lib";
+import { db, fmtDate, PAY, rs, useAdminQuery } from "@/components/admin/lib";
 
 export const Route = createFileRoute("/admin/orders/")({ component: Orders });
 
-export const PAY: Record<string, string> = { cod: "COD", jazzcash: "JazzCash", easypaisa: "Easypaisa", bank_transfer: "Bank Transfer", local_card: "Card" };
+
 
 function Orders() {
   const { data: orders = [] } = useAdminQuery<any[]>(["orders"], () => db.from("orders").select("id,order_number,full_name,email,city,total,status,payment_method,payment_status,created_at").order("created_at", { ascending: false }).limit(500));

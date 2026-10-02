@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Field, PageHeader, Panel, Pill, statusTone, th, td, inputCls } from "@/components/admin/ui";
-import { db, fmtDate, rs, useAdminMutate, useAdminQuery } from "@/components/admin/lib";
-import { PAY } from "./admin.orders.index";
+import { db, fmtDate, PAY, rs, useAdminMutate, useAdminQuery } from "@/components/admin/lib";
+
 
 export const Route = createFileRoute("/admin/orders/$id")({ component: OrderDetail });
 
