@@ -34,7 +34,7 @@ const tones: Record<string, string> = {
   neutral: "bg-muted text-muted-foreground border-border",
 };
 export function Pill({ tone = "neutral", children }: { tone?: keyof typeof tones | string; children: ReactNode }) {
-  return <span className={cn("inline-flex items-center rounded-sm border px-1.5 py-0.5 text-[11px] font-medium uppercase tracking-wide", tones[tone] ?? tones.neutral)}>{children}</span>;
+  return <span className={cn("inline-flex items-center rounded-sm border px-1.5 py-0.5 text-[11px] font-medium uppercase tracking-wide", tones[tone] ?? tones["neutral"])}>{children}</span>;
 }
 
 export const statusTone = (s: string) =>

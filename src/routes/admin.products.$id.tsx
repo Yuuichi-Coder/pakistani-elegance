@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { Count, Field, PageHeader, Panel, Serp, inputCls } from "@/components/admin/ui";
 import { db, readError, uploadMedia, useAdminQuery } from "@/components/admin/lib";
 import { adminMutate } from "@/lib/admin.functions";
+import { AdminThumb } from "@/components/admin/thumb";
 
 export const Route = createFileRoute("/admin/products/$id")({ component: ProductEditor });
 
@@ -48,13 +49,13 @@ function ProductEditor() {
     try { for (const file of Array.from(files)) { const url = await uploadMedia(file, "products"); setImgs((p) => [...p, { url, alt: f.name }]); } }
     catch (e) { toast.error(readError(e)); }
   };
-  const move = (from: number, to: number) => setImgs((p) => { const a = [...p]; const [x] = a.splice(from, 1); a.splice(to, 0, x); return a; });
+  const move = (from: number, to: number) => setImgs((p) => { const a = [...p]; const [x] = a.splice(from, 1); if (x) a.splice(to, 0, x); return a; });
 
   const save = async () => {
-    if (!imgs.length) return toast.error("Add at least one image");
+    const first = imgs[0]; if (!first) { toast.error("Add at least one image"); return; }
     setSaving(true);
     try {
-      const values = { ...f, price: Number(f.price), compare_at_price: f.compare_at_price ? Number(f.compare_at_price) : null, image_url: imgs[0].url, hover_image_url: (imgs[1] ?? imgs[0]).url,
+      const values = { ...f, price: Number(f.price), compare_at_price: f.compare_at_price ? Number(f.compare_at_price) : null, image_url: first.url, hover_image_url: (imgs[1] ?? first).url,
         is_active: f.status === "active" || f.status === "out_of_stock", meta_title: f.meta_title || null, meta_description: f.meta_description || null, canonical_url: f.canonical_url || null, og_image_url: f.og_image_url || null };
       let pid = id;
       if (isNew) {
@@ -112,7 +113,7 @@ function ProductEditor() {
                 <div key={img.url + i} draggable onDragStart={() => setDrag(i)} onDragOver={(e) => e.preventDefault()} onDrop={() => { if (drag !== null) move(drag, i); setDrag(null); }}
                   className={"rounded-md border bg-background p-2 " + (i === 0 ? "border-primary" : "border-border")}>
                   <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-muted">
-                    <img src={img.url} alt={img.alt} className="h-full w-full object-contain" />
+                    <AdminThumb src={img.url} alt={img.alt} className="h-full w-full" />
                     <GripVertical className="absolute left-1 top-1 h-4 w-4 cursor-grab text-background drop-shadow" />
                   </div>
                   <input className={inputCls + " mt-2 h-8 text-xs"} placeholder="Alt text" value={img.alt} onChange={(e) => setImgs((p) => p.map((x, n) => (n === i ? { ...x, alt: e.target.value } : x)))} />
