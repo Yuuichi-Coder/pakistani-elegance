@@ -48,13 +48,13 @@ function ProductEditor() {
     try { for (const file of Array.from(files)) { const url = await uploadMedia(file, "products"); setImgs((p) => [...p, { url, alt: f.name }]); } }
     catch (e) { toast.error(readError(e)); }
   };
-  const move = (from: number, to: number) => setImgs((p) => { const a = [...p]; const [x] = a.splice(from, 1); a.splice(to, 0, x); return a; });
+  const move = (from: number, to: number) => setImgs((p) => { const a = [...p]; const [x] = a.splice(from, 1); if (x) a.splice(to, 0, x); return a; });
 
   const save = async () => {
-    if (!imgs.length) return toast.error("Add at least one image");
+    const first = imgs[0]; if (!first) { toast.error("Add at least one image"); return; }
     setSaving(true);
     try {
-      const values = { ...f, price: Number(f.price), compare_at_price: f.compare_at_price ? Number(f.compare_at_price) : null, image_url: imgs[0].url, hover_image_url: (imgs[1] ?? imgs[0]).url,
+      const values = { ...f, price: Number(f.price), compare_at_price: f.compare_at_price ? Number(f.compare_at_price) : null, image_url: first.url, hover_image_url: (imgs[1] ?? first).url,
         is_active: f.status === "active" || f.status === "out_of_stock", meta_title: f.meta_title || null, meta_description: f.meta_description || null, canonical_url: f.canonical_url || null, og_image_url: f.og_image_url || null };
       let pid = id;
       if (isNew) {

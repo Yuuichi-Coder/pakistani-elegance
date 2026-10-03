@@ -34,7 +34,7 @@ function SettingsPage() {
             </Field>
             <Field label="WhatsApp number" hint="digits with country code"><input className={inputCls} value={f.whatsapp} onChange={(e) => setF({ ...f, whatsapp: e.target.value.replace(/\D/g, "") })} /></Field>
             <Field label="Announcement bar (one message per line)"><textarea rows={3} className={inputCls + " h-auto py-2"} value={f.announcement} onChange={(e) => setF({ ...f, announcement: e.target.value })} /></Field>
-            {(["instagram", "facebook", "tiktok"] as const).map((k) => <Field key={k} label={k[0].toUpperCase() + k.slice(1)}><input className={inputCls} value={f.social[k] ?? ""} onChange={(e) => setF({ ...f, social: { ...f.social, [k]: e.target.value } })} placeholder="https://…" /></Field>)}
+            {(["instagram", "facebook", "tiktok"] as const).map((k) => <Field key={k} label={k.charAt(0).toUpperCase() + k.slice(1)}><input className={inputCls} value={f.social[k] ?? ""} onChange={(e) => setF({ ...f, social: { ...f.social, [k]: e.target.value } })} placeholder="https://…" /></Field>)}
             <Field label="Footer links">
               <div className="space-y-2">
                 {f.footer_links.map((l: any, i: number) => (
