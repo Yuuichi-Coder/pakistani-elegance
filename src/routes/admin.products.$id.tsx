@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { Count, Field, PageHeader, Panel, Serp, inputCls } from "@/components/admin/ui";
 import { db, readError, uploadMedia, useAdminQuery } from "@/components/admin/lib";
 import { adminMutate } from "@/lib/admin.functions";
+import { AdminThumb } from "@/components/admin/thumb";
 
 export const Route = createFileRoute("/admin/products/$id")({ component: ProductEditor });
 
@@ -112,7 +113,7 @@ function ProductEditor() {
                 <div key={img.url + i} draggable onDragStart={() => setDrag(i)} onDragOver={(e) => e.preventDefault()} onDrop={() => { if (drag !== null) move(drag, i); setDrag(null); }}
                   className={"rounded-md border bg-background p-2 " + (i === 0 ? "border-primary" : "border-border")}>
                   <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-muted">
-                    <img src={img.url} alt={img.alt} className="h-full w-full object-contain" />
+                    <AdminThumb src={img.url} alt={img.alt} className="h-full w-full" />
                     <GripVertical className="absolute left-1 top-1 h-4 w-4 cursor-grab text-background drop-shadow" />
                   </div>
                   <input className={inputCls + " mt-2 h-8 text-xs"} placeholder="Alt text" value={img.alt} onChange={(e) => setImgs((p) => p.map((x, n) => (n === i ? { ...x, alt: e.target.value } : x)))} />

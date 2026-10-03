@@ -8,6 +8,7 @@ import { PageHeader, Pill, statusTone, th, td, inputCls } from "@/components/adm
 import { db, LOW_STOCK, readError, rs, useAdminMutate, useAdminQuery } from "@/components/admin/lib";
 import { bulkAdjustPrice, bulkSetStock } from "@/lib/admin.functions";
 import { useQueryClient } from "@tanstack/react-query";
+import { AdminThumb } from "@/components/admin/thumb";
 
 export const Route = createFileRoute("/admin/products/")({ component: Products });
 
@@ -61,7 +62,7 @@ function Products() {
               return (
                 <tr key={p.id} className="border-t border-border hover:bg-muted/30">
                   <td className={td}><input type="checkbox" aria-label={`Select ${p.name}`} checked={sel.includes(p.id)} onChange={(e) => setSel(e.target.checked ? [...sel, p.id] : sel.filter((x) => x !== p.id))} /></td>
-                  <td className={td}><Link to="/admin/products/$id" params={{ id: p.id }} className="flex items-center gap-3"><img src={p.image_url} alt="" className="h-12 w-9 rounded-sm object-cover" /><span className="font-medium hover:text-primary">{p.name}</span>{p.is_featured && <Pill tone="warn">Featured</Pill>}</Link></td>
+                  <td className={td}><Link to="/admin/products/$id" params={{ id: p.id }} className="flex items-center gap-3"><AdminThumb src={p.image_url} alt="" className="h-12 w-9 shrink-0 rounded-sm" /><span className="font-medium hover:text-primary">{p.name}</span>{p.is_featured && <Pill tone="warn">Featured</Pill>}</Link></td>
                   <td className={td + " font-mono text-xs"}>{p.sku}</td>
                   <td className={td + " tabular-nums"}>{rs(p.price)}{p.compare_at_price ? <span className="ml-1 text-xs text-muted-foreground line-through">{rs(p.compare_at_price)}</span> : null}</td>
                   <td className={td}><span className="inline-flex items-center gap-1 tabular-nums">{stock}{low && <AlertTriangle className="h-3.5 w-3.5 text-destructive" aria-label="Low stock" />}</span></td>
